@@ -45,11 +45,20 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionNew_Device"/>
+   <addaction name="actionSave"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNew_Device">
    <property name="text">
     <string>New Device</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
  </widget>

@@ -27,6 +27,13 @@ class myTabPage : public QWidget
 
 public:
     explicit myTabPage(QWidget *parent = 0);
+    QString getDevice_ID();
+    QString getModel();
+    QString getCommonSignal();
+    QString getCOMMON_SIGNAL_LENGTH();
+    QString getCMD_SIGNAL_LENGTH();
+    field getField(int i);
+    value getValue(int i);
     ~myTabPage();
 
 private:

@@ -47,6 +47,42 @@ myTabPage::myTabPage(QWidget *parent) :
     ui->miscBox->setLayout(grid);
 }
 
+QString myTabPage::getDevice_ID()
+{
+    return ui->Device_ID->text();
+}
+
+QString myTabPage::getModel()
+{
+    return ui->Model->text();
+}
+
+QString myTabPage::getCommonSignal()
+{
+    return ui->CommonSignal->text();
+}
+
+QString myTabPage::getCOMMON_SIGNAL_LENGTH()
+{
+    return ui->COMMON_SIGNAL_LENGTH->text();
+}
+
+QString myTabPage::getCMD_SIGNAL_LENGTH()
+{
+    return ui->CMD_SIGNAL_LENGTH->text();
+}
+
+
+field myTabPage::getField(int i)
+{
+    return m_fields[i];
+}
+
+value myTabPage::getValue(int i)
+{
+    return m_values[i];
+}
+
 myTabPage::~myTabPage()
 {
     delete ui;

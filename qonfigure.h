@@ -2,6 +2,9 @@
 #define QONFIGURE_H
 
 #include <QMainWindow>
+#include <QFile>
+#include <QTextStream>
+#include "mytabpage.h"
 
 namespace Ui {
     class Qonfigure;
@@ -17,8 +20,10 @@ public:
 
 private:
     Ui::Qonfigure *ui;
+    myTabPage *m_pages;
 
 private slots:
+    void on_actionSave_triggered();
     void on_actionNew_Device_triggered();
     void removeTab(int);
 };
