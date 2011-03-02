@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>467</width>
-    <height>416</height>
+    <height>596</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,21 +44,42 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionOpen"/>
    <addaction name="actionNew_Device"/>
    <addaction name="actionSave"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNew_Device">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../../../usr/share/icons/oxygen/48x48/actions/tab-new-background.png</normaloff>../../../../../usr/share/icons/oxygen/48x48/actions/tab-new-background.png</iconset>
+   </property>
    <property name="text">
     <string>New Device</string>
    </property>
   </action>
   <action name="actionSave">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../../../usr/share/icons/oxygen/32x32/actions/document-save-as.png</normaloff>../../../../../usr/share/icons/oxygen/32x32/actions/document-save-as.png</iconset>
+   </property>
    <property name="text">
     <string>Save</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../../../usr/share/icons/oxygen/48x48/actions/document-open.png</normaloff>../../../../../usr/share/icons/oxygen/48x48/actions/document-open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
  </widget>

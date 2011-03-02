@@ -2,6 +2,7 @@
 #define MYTABPAGE_H
 
 #include <QWidget>
+#include <QLineEdit>
 #include <QDoubleSpinBox>
 #include <QComboBox>
 
@@ -32,14 +33,18 @@ public:
     QString getCommonSignal();
     QString getCOMMON_SIGNAL_LENGTH();
     QString getCMD_SIGNAL_LENGTH();
-    field getField(int i);
-    value getValue(int i);
+    field* getFields() { return m_fields; }
+    int getFieldSize() { return m_fields_size; }
+    value* getValues() { return m_values; }
+    int getValueSize() { return m_values_size; }
     ~myTabPage();
 
 private:
     Ui::myTabPage *ui;
     field *m_fields;
+    int m_fields_size;
     value *m_values;
+    int m_values_size;
 };
 
 #endif // MYTABPAGE_H

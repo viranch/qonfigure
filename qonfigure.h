@@ -2,7 +2,10 @@
 #define QONFIGURE_H
 
 #include <QMainWindow>
+#include <QMessageBox>
 #include <QFile>
+#include <QFileDialog>
+#include <QDir>
 #include <QTextStream>
 #include "mytabpage.h"
 
@@ -21,6 +24,7 @@ public:
 private:
     Ui::Qonfigure *ui;
     myTabPage *m_pages;
+    QString filename;
 
 private slots:
     void on_actionSave_triggered();

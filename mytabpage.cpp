@@ -30,6 +30,7 @@ myTabPage::myTabPage(QWidget *parent) :
         grid->addWidget(this->m_fields[i].hex, i, 3);
     }
     ui->timesBox->setLayout(grid);
+    m_fields_size = labels.size();
 
     QStringList vlabels;
     vlabels << "xvalue4" << "xvalue5" << "yvalue4" << "yvalue5" << "REPEAT_XP" << "REPEAT_XM" << "REPEAT_YP" <<
@@ -45,43 +46,18 @@ myTabPage::myTabPage(QWidget *parent) :
         grid->addWidget(m_values[i].value, i, 1);
     }
     ui->miscBox->setLayout(grid);
+    m_values_size = vlabels.size();
 }
 
-QString myTabPage::getDevice_ID()
-{
-    return ui->Device_ID->text();
-}
+QString myTabPage::getDevice_ID() { return ui->Device_ID->text(); }
 
-QString myTabPage::getModel()
-{
-    return ui->Model->text();
-}
+QString myTabPage::getModel() { return ui->Model->text(); }
 
-QString myTabPage::getCommonSignal()
-{
-    return ui->CommonSignal->text();
-}
+QString myTabPage::getCommonSignal() { return ui->CommonSignal->text(); }
 
-QString myTabPage::getCOMMON_SIGNAL_LENGTH()
-{
-    return ui->COMMON_SIGNAL_LENGTH->text();
-}
+QString myTabPage::getCOMMON_SIGNAL_LENGTH() { return ui->COMMON_SIGNAL_LENGTH->text(); }
 
-QString myTabPage::getCMD_SIGNAL_LENGTH()
-{
-    return ui->CMD_SIGNAL_LENGTH->text();
-}
-
-
-field myTabPage::getField(int i)
-{
-    return m_fields[i];
-}
-
-value myTabPage::getValue(int i)
-{
-    return m_values[i];
-}
+QString myTabPage::getCMD_SIGNAL_LENGTH() { return ui->CMD_SIGNAL_LENGTH->text(); }
 
 myTabPage::~myTabPage()
 {
