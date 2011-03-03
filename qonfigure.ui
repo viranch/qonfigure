@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>467</width>
-    <height>596</height>
+    <width>460</width>
+    <height>454</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,11 +17,14 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="1" column="0">
      <widget class="QTabWidget" name="devices">
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
       <property name="currentIndex">
        <number>-1</number>
       </property>
       <property name="tabsClosable">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
      </widget>
     </item>
@@ -32,7 +35,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>467</width>
+     <width>460</width>
      <height>21</height>
     </rect>
    </property>
@@ -45,19 +48,9 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpen"/>
-   <addaction name="actionNew_Device"/>
    <addaction name="actionSave"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionNew_Device">
-   <property name="icon">
-    <iconset>
-     <normaloff>../../../../../usr/share/icons/oxygen/48x48/actions/tab-new-background.png</normaloff>../../../../../usr/share/icons/oxygen/48x48/actions/tab-new-background.png</iconset>
-   </property>
-   <property name="text">
-    <string>New Device</string>
-   </property>
-  </action>
   <action name="actionSave">
    <property name="icon">
     <iconset>
@@ -85,24 +78,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections>
-  <connection>
-   <sender>devices</sender>
-   <signal>tabCloseRequested(int)</signal>
-   <receiver>Qonfigure</receiver>
-   <slot>removeTab(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>242</x>
-     <y>108</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>364</x>
-     <y>49</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
  <slots>
   <slot>changeTabCount()</slot>
   <slot>removeTab(int)</slot>

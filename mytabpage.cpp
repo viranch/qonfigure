@@ -6,58 +6,88 @@ myTabPage::myTabPage(QWidget *parent) :
     ui(new Ui::myTabPage)
 {
     ui->setupUi(this);
-
-    QStringList labels;
-    labels << "burstOnHigh" << "burstOffHigh" << "onPeriodHigh" << "offPeriodZeroHigh" << "offPeriodOneHigh" << "burstOnLow"
-     << "burstOffLow" << "onPeriodLow" << "offPeriodZeroLow" << "offPeriodOneLow" << "WRONGBIT_HIGH" << "WRONGBIT_LOW"
-     << "FLIPBIT_HIGH" << "FLIPBIT_LOW";
-
-    this->m_fields = new field[labels.size()];
-    QGridLayout *grid = new QGridLayout;
-
-    for (int i=0; i<labels.size(); i++) {
-        m_fields[i].label = labels.at(i);
-        grid->addWidget( new QLabel (labels.at(i) ), i, 0 );
-        this->m_fields[i].time = new QDoubleSpinBox;
-        this->m_fields[i].time->setDecimals(1);
-        this->m_fields[i].time->setMaximum(10000.0);
-        grid->addWidget(this->m_fields[i].time, i, 1);
-        this->m_fields[i].unit = new QComboBox;
-        this->m_fields[i].unit->addItem("ms", "MILLISEC");
-        this->m_fields[i].unit->addItem("us", "MICROSEC");
-        grid->addWidget(this->m_fields[i].unit, i, 2);
-        this->m_fields[i].hex = new QLineEdit;
-        grid->addWidget(this->m_fields[i].hex, i, 3);
-    }
-    ui->timesBox->setLayout(grid);
-    m_fields_size = labels.size();
-
-    QStringList vlabels;
-    vlabels << "xvalue4" << "xvalue5" << "yvalue4" << "yvalue5" << "REPEAT_XP" << "REPEAT_XM" << "REPEAT_YP" <<
-     "REPEAT_YM" << "FLIP_POSITION_IN_DATA1" << "FLIP_POSITION_IN_DATA2" << "FLIP_POSITION_IN_DATA3" <<
-     "WRONG_POSITION_IN_DATA1";
-
-    m_values = new value[vlabels.size()];
-    grid = new QGridLayout;
-    for (int i=0; i<vlabels.size(); i++) {
-        m_values[i].label = vlabels.at(i);
-        grid->addWidget( new QLabel (vlabels.at(i)), i, 0 );
-        m_values[i].value = new QLineEdit;
-        grid->addWidget(m_values[i].value, i, 1);
-    }
-    ui->miscBox->setLayout(grid);
-    m_values_size = vlabels.size();
+    ui->toolBox->setCurrentIndex(0);
 }
 
 QString myTabPage::getDevice_ID() { return ui->Device_ID->text(); }
 
 QString myTabPage::getModel() { return ui->Model->text(); }
 
-QString myTabPage::getCommonSignal() { return ui->CommonSignal->text(); }
+QMap<QString, QString> myTabPage::getCommonBox()
+{
+    commonBox["CommonSignal"] = ui->CommonSignal->text();
+    commonBox["xvalue4"] = ui->xvalue4->text();
+    commonBox["xvalue5"] = ui->xvalue5->text();
+    commonBox["yvalue4"] = ui->yvalue4->text();
+    commonBox["yvalue5"] = ui->yvalue5->text();
+    commonBox["COMMON_SIGNAL_LENGTH"] = ui->COMMON_SIGNAL_LENGTH->text();
+    commonBox["CMD_SIGNAL_LENGTH"] = ui->CMD_SIGNAL_LENGTH->text();
 
-QString myTabPage::getCOMMON_SIGNAL_LENGTH() { return ui->COMMON_SIGNAL_LENGTH->text(); }
+    return commonBox;
+}
 
-QString myTabPage::getCMD_SIGNAL_LENGTH() { return ui->CMD_SIGNAL_LENGTH->text(); }
+QMap<QString, timerField> myTabPage::getTimerBox()
+{
+    timerField* tmp = new timerField[7];
+
+    tmp[0].time = ui->burstOnTime->value();
+    tmp[0].unit = ui->burstOnUnit->currentIndex()==0 ? "MILLISEC":"MICROSEC";
+    tmp[0].high = ui->burstOnHigh->text();
+    tmp[0].low = ui->burstOnLow->text();
+    timerBox["burstOn"] = tmp[0];
+
+    tmp[1].time = ui->burstOffTime->value();
+    tmp[1].unit = ui->burstOffUnit->currentIndex()==0 ? "MILLISEC":"MICROSEC";
+    tmp[1].high = ui->burstOffHigh->text();
+    tmp[1].low = ui->burstOffLow->text();
+    timerBox["burstOff"] = tmp[1];
+
+    tmp[2].time = ui->onPeriodTime->value();
+    tmp[2].unit = ui->onPeriodUnit->currentIndex()==0 ? "MILLISEC":"MICROSEC";
+    tmp[2].high = ui->onPeriodHigh->text();
+    tmp[2].low = ui->onPeriodLow->text();
+    timerBox["onPeriod"] = tmp[2];
+
+    tmp[3].time = ui->offPeriodZeroTime->value();
+    tmp[3].unit = ui->offPeriodZeroUnit->currentIndex()==0 ? "MILLISEC":"MICROSEC";
+    tmp[3].high = ui->offPeriodZeroHigh->text();
+    tmp[3].low = ui->offPeriodZeroLow->text();
+    timerBox["offPeriodZero"] = tmp[3];
+
+    tmp[4].time = ui->offPeriodOneTime->value();
+    tmp[4].unit = ui->offPeriodOneUnit->currentIndex()==0 ? "MILLISEC":"MICROSEC";
+    tmp[4].high = ui->offPeriodOneHigh->text();
+    tmp[4].low = ui->offPeriodOneLow->text();
+    timerBox["offPeriodOne"] = tmp[4];
+
+    tmp[5].time = ui->WRONGBITTime->value();
+    tmp[5].unit = ui->WRONGBITUnit->currentIndex()==0 ? "MILLISEC":"MICROSEC";
+    tmp[5].high = ui->WRONGBITHigh->text();
+    tmp[5].low = ui->WRONGBITLow->text();
+    timerBox["WRONGBIT"] = tmp[5];
+
+    tmp[6].time = ui->FLIPBITTime->value();
+    tmp[6].unit = ui->FLIPBITUnit->currentIndex()==0 ? "MILLISEC":"MICROSEC";
+    tmp[6].high = ui->FLIPBITHigh->text();
+    tmp[6].low = ui->FLIPBITLow->text();
+    timerBox["FLIPBIT"] = tmp[6];
+
+    return timerBox;
+}
+
+QMap<QString, QString> myTabPage::getMiscBox()
+{
+    miscBox["REPEAT_XP"] = ui->REPEAT_XP->text();
+    miscBox["REPEAT_XM"] = ui->REPEAT_XM->text();
+    miscBox["REPEAT_YP"] = ui->REPEAT_YP->text();
+    miscBox["REPEAT_YM"] = ui->REPEAT_YM->text();
+    miscBox["FLIP_POSITION_IN_DATA1"] = ui->FLIP_POSITION_IN_DATA1->text();
+    miscBox["FLIP_POSITION_IN_DATA2"] = ui->FLIP_POSITION_IN_DATA2->text();
+    miscBox["FLIP_POSITION_IN_DATA3"] = ui->FLIP_POSITION_IN_DATA3->text();
+    miscBox["WRONG_POSITION_IN_DATA1"] = ui->WRONG_POSITION_IN_DATA1->text();
+
+    return miscBox;
+}
 
 myTabPage::~myTabPage()
 {

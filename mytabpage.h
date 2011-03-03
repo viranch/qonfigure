@@ -5,21 +5,17 @@
 #include <QLineEdit>
 #include <QDoubleSpinBox>
 #include <QComboBox>
+#include <QMap>
 
 namespace Ui {
     class myTabPage;
 }
 
-struct field {
-    QString label;
-    QDoubleSpinBox *time;
-    QComboBox *unit;
-    QLineEdit *hex;
-};
-
-struct value {
-    QString label;
-    QLineEdit *value;
+struct timerField {
+    double time;
+    QString unit;
+    QString high;
+    QString low;
 };
 
 class myTabPage : public QWidget
@@ -28,23 +24,21 @@ class myTabPage : public QWidget
 
 public:
     explicit myTabPage(QWidget *parent = 0);
+
     QString getDevice_ID();
     QString getModel();
-    QString getCommonSignal();
-    QString getCOMMON_SIGNAL_LENGTH();
-    QString getCMD_SIGNAL_LENGTH();
-    field* getFields() { return m_fields; }
-    int getFieldSize() { return m_fields_size; }
-    value* getValues() { return m_values; }
-    int getValueSize() { return m_values_size; }
+
+    QMap<QString, QString> getCommonBox();
+    QMap<QString, timerField> getTimerBox();
+    QMap<QString, QString> getMiscBox();
+
     ~myTabPage();
 
 private:
     Ui::myTabPage *ui;
-    field *m_fields;
-    int m_fields_size;
-    value *m_values;
-    int m_values_size;
+    QMap<QString, QString> commonBox;
+    QMap<QString, timerField> timerBox;
+    QMap<QString, QString> miscBox;
 };
 
 #endif // MYTABPAGE_H

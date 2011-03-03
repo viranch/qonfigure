@@ -12,10 +12,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         qonfigure.cpp \
-    mytabpage.cpp
+    mytabpage.cpp \
+    selectdevices.cpp
 
 HEADERS  += qonfigure.h \
-    mytabpage.h
+    mytabpage.h \
+    selectdevices.h
 
 FORMS    += qonfigure.ui \
-    mytabpage.ui
+    mytabpage.ui \
+    selectdevices.ui

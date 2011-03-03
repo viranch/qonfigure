@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>442</width>
-    <height>488</height>
+    <height>349</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,11 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QToolBox" name="toolBox">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="commonBox">
       <property name="geometry">
@@ -25,7 +28,7 @@
         <x>0</x>
         <y>0</y>
         <width>424</width>
-        <height>389</height>
+        <height>250</height>
        </rect>
       </property>
       <attribute name="label">
@@ -42,17 +45,17 @@
        <item row="2" column="1">
         <widget class="QLineEdit" name="CommonSignal"/>
        </item>
-       <item row="3" column="0">
+       <item row="7" column="0">
         <widget class="QLabel" name="label_4">
          <property name="text">
           <string>Common Signal Length</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
+       <item row="7" column="1">
         <widget class="QLineEdit" name="COMMON_SIGNAL_LENGTH"/>
        </item>
-       <item row="4" column="0">
+       <item row="8" column="0">
         <widget class="QLabel" name="label_3">
          <property name="layoutDirection">
           <enum>Qt::RightToLeft</enum>
@@ -62,13 +65,13 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
+       <item row="8" column="1">
         <widget class="QLineEdit" name="CMD_SIGNAL_LENGTH"/>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Devide Name</string>
+          <string>Device Name</string>
          </property>
         </widget>
        </item>
@@ -85,30 +88,488 @@
        <item row="1" column="1">
         <widget class="QLineEdit" name="Model"/>
        </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>xvalue4</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="xvalue4"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>xvalue5</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="xvalue5"/>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>yvalue4</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="yvalue4"/>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>yvalue5</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="yvalue5"/>
+       </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="timesBox">
+     <widget class="QWidget" name="timerBox">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
         <width>424</width>
-        <height>389</height>
+        <height>250</height>
        </rect>
       </property>
       <attribute name="label">
        <string>Timers</string>
       </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="3">
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>High</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string>Low</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_12">
+         <property name="text">
+          <string>burstOn</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QDoubleSpinBox" name="burstOnTime">
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>10000.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QComboBox" name="burstOnUnit">
+         <item>
+          <property name="text">
+           <string>ms</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>us</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLineEdit" name="burstOnHigh"/>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLineEdit" name="burstOnLow"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_13">
+         <property name="text">
+          <string>burstOff</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QDoubleSpinBox" name="burstOffTime">
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>10000.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QComboBox" name="burstOffUnit">
+         <item>
+          <property name="text">
+           <string>ms</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>us</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLineEdit" name="burstOffHigh"/>
+       </item>
+       <item row="2" column="4">
+        <widget class="QLineEdit" name="burstOffLow"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_14">
+         <property name="text">
+          <string>onPeriod</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QDoubleSpinBox" name="onPeriodTime">
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>10000.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QComboBox" name="onPeriodUnit">
+         <item>
+          <property name="text">
+           <string>ms</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>us</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="QLineEdit" name="onPeriodHigh"/>
+       </item>
+       <item row="3" column="4">
+        <widget class="QLineEdit" name="onPeriodLow"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_15">
+         <property name="text">
+          <string>OffPeriodZero</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QDoubleSpinBox" name="offPeriodZeroTime">
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>10000.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QComboBox" name="offPeriodZeroUnit">
+         <item>
+          <property name="text">
+           <string>ms</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>us</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QLineEdit" name="offPeriodZeroHigh"/>
+       </item>
+       <item row="4" column="4">
+        <widget class="QLineEdit" name="offPeriodZeroLow"/>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_16">
+         <property name="text">
+          <string>offPeriodOne</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QDoubleSpinBox" name="offPeriodOneTime">
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>10000.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QComboBox" name="offPeriodOneUnit">
+         <item>
+          <property name="text">
+           <string>ms</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>us</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="5" column="3">
+        <widget class="QLineEdit" name="offPeriodOneHigh"/>
+       </item>
+       <item row="5" column="4">
+        <widget class="QLineEdit" name="offPeriodOneLow"/>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_17">
+         <property name="text">
+          <string>WRONGBIT</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QDoubleSpinBox" name="WRONGBITTime">
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>10000.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="2">
+        <widget class="QComboBox" name="WRONGBITUnit">
+         <item>
+          <property name="text">
+           <string>ms</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>us</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="3">
+        <widget class="QLineEdit" name="WRONGBITHigh"/>
+       </item>
+       <item row="6" column="4">
+        <widget class="QLineEdit" name="WRONGBITLow"/>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_18">
+         <property name="text">
+          <string>FLIPBIT</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QDoubleSpinBox" name="FLIPBITTime">
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>10000.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="2">
+        <widget class="QComboBox" name="FLIPBITUnit">
+         <item>
+          <property name="text">
+           <string>ms</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>us</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="7" column="3">
+        <widget class="QLineEdit" name="FLIPBITHigh"/>
+       </item>
+       <item row="7" column="4">
+        <widget class="QLineEdit" name="FLIPBITLow"/>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="miscBox">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>424</width>
+        <height>250</height>
+       </rect>
+      </property>
       <attribute name="label">
        <string>Misc</string>
       </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_19">
+         <property name="text">
+          <string>REPEAT_XP</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="REPEAT_XP"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_20">
+         <property name="text">
+          <string>REPEAT_XM</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="REPEAT_XM"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_21">
+         <property name="text">
+          <string>REPEAT_YP</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="REPEAT_YP"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_22">
+         <property name="text">
+          <string>REPEAT_YM</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="REPEAT_YM"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_23">
+         <property name="text">
+          <string>FLIP_POSITION_IN_DATA1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="FLIP_POSITION_IN_DATA1"/>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_24">
+         <property name="text">
+          <string>FLIP_POSITION_IN_DATA2</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="FLIP_POSITION_IN_DATA2"/>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_25">
+         <property name="text">
+          <string>FLIP_POSITION_IN_DATA3</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="FLIP_POSITION_IN_DATA3"/>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_26">
+         <property name="text">
+          <string>WRONG_POSITION_IN_DATA1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLineEdit" name="WRONG_POSITION_IN_DATA1"/>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>Device_ID</tabstop>
+  <tabstop>Model</tabstop>
+  <tabstop>CommonSignal</tabstop>
+  <tabstop>xvalue4</tabstop>
+  <tabstop>xvalue5</tabstop>
+  <tabstop>yvalue4</tabstop>
+  <tabstop>yvalue5</tabstop>
+  <tabstop>COMMON_SIGNAL_LENGTH</tabstop>
+  <tabstop>CMD_SIGNAL_LENGTH</tabstop>
+  <tabstop>burstOnTime</tabstop>
+  <tabstop>burstOnUnit</tabstop>
+  <tabstop>burstOnHigh</tabstop>
+  <tabstop>burstOnLow</tabstop>
+  <tabstop>burstOffTime</tabstop>
+  <tabstop>burstOffUnit</tabstop>
+  <tabstop>burstOffHigh</tabstop>
+  <tabstop>burstOffLow</tabstop>
+  <tabstop>onPeriodTime</tabstop>
+  <tabstop>onPeriodUnit</tabstop>
+  <tabstop>onPeriodHigh</tabstop>
+  <tabstop>onPeriodLow</tabstop>
+  <tabstop>offPeriodZeroTime</tabstop>
+  <tabstop>offPeriodZeroUnit</tabstop>
+  <tabstop>offPeriodZeroHigh</tabstop>
+  <tabstop>offPeriodZeroLow</tabstop>
+  <tabstop>offPeriodOneTime</tabstop>
+  <tabstop>offPeriodOneUnit</tabstop>
+  <tabstop>offPeriodOneHigh</tabstop>
+  <tabstop>offPeriodOneLow</tabstop>
+  <tabstop>WRONGBITTime</tabstop>
+  <tabstop>WRONGBITUnit</tabstop>
+  <tabstop>WRONGBITHigh</tabstop>
+  <tabstop>WRONGBITLow</tabstop>
+  <tabstop>FLIPBITTime</tabstop>
+  <tabstop>FLIPBITUnit</tabstop>
+  <tabstop>FLIPBITHigh</tabstop>
+  <tabstop>FLIPBITLow</tabstop>
+  <tabstop>REPEAT_XP</tabstop>
+  <tabstop>REPEAT_XM</tabstop>
+  <tabstop>REPEAT_YP</tabstop>
+  <tabstop>REPEAT_YM</tabstop>
+  <tabstop>FLIP_POSITION_IN_DATA1</tabstop>
+  <tabstop>FLIP_POSITION_IN_DATA2</tabstop>
+  <tabstop>FLIP_POSITION_IN_DATA3</tabstop>
+  <tabstop>WRONG_POSITION_IN_DATA1</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

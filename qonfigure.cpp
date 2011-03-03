@@ -7,11 +7,16 @@ Qonfigure::Qonfigure(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    m_pages = new myTabPage[4];
-    ui->devices->addTab(&m_pages[0], "Device 1");
-    ui->devices->addTab(&m_pages[1], "Device 2");
-    ui->devices->addTab(&m_pages[2], "Device 3");
-    ui->devices->addTab(&m_pages[3], "Device 4");
+    m_pages.append(new myTabPage(this));
+    ui->devices->addTab(m_pages[0], "Device 1");
+    m_pages.append(new myTabPage(this));
+    ui->devices->addTab(m_pages[1], "Device 2");
+    m_pages.append(new myTabPage(this));
+    ui->devices->addTab(m_pages[2], "Device 3");
+    m_pages.append(new myTabPage(this));
+    ui->devices->addTab(m_pages[3], "Device 4");
+
+    sd = new SelectDevices(this);
 }
 
 Qonfigure::~Qonfigure()
@@ -19,18 +24,13 @@ Qonfigure::~Qonfigure()
     delete ui;
 }
 
-void Qonfigure::on_actionNew_Device_triggered()
-{
-    ui->devices->addTab(new myTabPage(), "New Device");
-}
-
-void Qonfigure::removeTab(int index)
-{
-    ui->devices->removeTab(index);
-}
-
 void Qonfigure::on_actionSave_triggered()
 {
+    if (!sd->exec())
+        return;
+
+    QList<bool> dev = sd->give();
+
     QString fname = filename;
 
     if (fname=="")
@@ -43,11 +43,6 @@ void Qonfigure::on_actionSave_triggered()
 
     QFile file ( fname );
     filename = fname;
-    //if ( !file.open(QIODevice::WriteOnly | QIODevice::Text) )
-    if ( ! (file.permissions() & QFile::WriteUser) ) {
-        QMessageBox::critical (this, "Error", "You do not have permission to write to the specified filepath.");
-        return;
-    }
 
     QString outString;
     QTextStream out (&outString);
@@ -55,64 +50,86 @@ void Qonfigure::on_actionSave_triggered()
 
     QStringList prefix;
     prefix << "ONE" << "TWO" << "THREE" << "FOUR";
-    field *f;
-    value *v;
 
+    QMap<QString, QString> f;
+    QMap<QString, timerField> t;
     QString later="";
 
     for (int i=0; i<4; i++) {
+        if (!dev[i]) continue;
         QString n = prefix.at(i);
 
+        /* Common */
         out << "/********* Device " << i+1 << "************/\n";
-        out << "#define DEV_" << n << "_Device_ID\t\t\t\"" << m_pages[i].getDevice_ID() << "\"\n";
-        out << "#define DEV_" << n << "_Model\t\t\t\"" << m_pages[i].getModel() << "\"\n";
-        out << "#define DEV_" << n << "_CommonSignal\t\t\t" << m_pages[i].getCommonSignal() << "\n";
-        out << "#define DEV_" << n << "_COMMON_SIGNAL_LENGTH\t\t\t" << m_pages[i].getCOMMON_SIGNAL_LENGTH() << "\n";
-        out << "#define DEV_" << n << "_CMD_SIGNAL_LENGTH\t\t\t" << m_pages[i].getCMD_SIGNAL_LENGTH() << "\n";
+        out << "#define DEV_" << n << "_Device_ID\t\t\t\"" << m_pages[i]->getDevice_ID() << "\"\n";
+        out << "#define DEV_" << n << "_Model\t\t\t\"" << m_pages[i]->getModel() << "\"\n";
 
+        QStringList labels;
+        labels << "CommonSignal" << "xvalue4" << "xvalue5" << "yvalue4" << "yvalue5" << "COMMON_SIGNAL_LENGTH" << "CMD_SIGNAL_LENGTH";
+        f = m_pages[i]->getCommonBox();
+        for (int j=0; j<labels.size(); j++)
+            out << "#define DEV_" << n << "_" << labels[j] << "\t\t\t" << f[labels[j]] << "\n";
+
+        /* Timers */
+        labels = QStringList();
+        labels << "burstOn" << "burstOff" << "onPeriod" << "offPeriodZero" << "offPeriodOne" << "WRONGBIT" << "FLIPBIT";
         QString var;
-        f = m_pages[i].getFields();
-        for (int j=0; j<m_pages[i].getFieldSize(); j++) {
-            var = "T3_";
-            out << "#define DEV_" << n << "_" << f[j].label << "\t\t\tT3_";
-            double val = f[j].time->value();
-            out << (int)val;
-            var += QString("%1").arg((int)val);
-            if (val!=(int)val) {
-                out << "_" << (val-(int)val)*10;
-                var += QString("_%1").arg((val-(int)val)*10);
-            }
-            QString tmp = f[j].unit->itemData(f[j].unit->currentIndex()).toString();
-            out << tmp;
-            var += tmp;
-            if (f[j].label.endsWith("low", Qt::CaseInsensitive)) {
-                out << "_LOW\n";
-                var += "_LOW";
-            }
-            else if (f[j].label.endsWith("high", Qt::CaseInsensitive)) {
-                out << "_HIGH\n";
-                var += "_HIGH";
-            }
-            if ( !later.contains(var) )
-                later += "#define " + var + "\t\t\t" + f[j].hex->text() + "\n";
-            else if ( !later.contains(var + "\t\t\t" + f[j].hex->text()) ) {
-                QMessageBox::critical (this, "Error", "Multiple definitions of "+var);
-                return;
+        t = m_pages[i]->getTimerBox();
+        for (int j=0; j<labels.size(); j++) {
+            QStringList highlow;
+            highlow << "High" << "Low";
+            timerField* tf = &t[labels[j]];
+
+            foreach (QString hl, highlow) {
+                var = "T3_";
+                out << "#define DEV_" << n << "_" << labels[j] << hl << "\t\t\tT3_";
+
+                double val = tf->time;
+                out << (int) val;
+                var += QString("%1").arg((int)val);
+                if (val!=(int)val) {
+                    out << "_" << (val-(int)val)*10;
+                    var += QString("_%1").arg((val-(int)val)*10);
+                }
+
+                out << tf->unit << "_" << hl.toUpper() << "\n";
+                var += tf->unit+"_"+hl.toUpper();
+
+                if (hl=="High") {
+                    if ( !later.contains(var) )
+                        later += "#define " + var + "\t\t\t" + tf->high + "\n";
+                    else if ( !later.contains(var + "\t\t\t" + tf->high) ) {
+                        QMessageBox::critical (this, "Qonfigure", "Multiple definitions of "+var);
+                        return;
+                    }
+                }
+                else {
+                    if ( !later.contains(var) )
+                        later += "#define " + var + "\t\t\t" + tf->low + "\n";
+                    else if ( !later.contains(var + "\t\t\t" + tf->low) ) {
+                        QMessageBox::critical (this, "Qonfigure", "Multiple definitions of "+var);
+                        return;
+                    }
+                }
             }
         }
         out << "\n";
 
-        v = m_pages[i].getValues();
-        for (int j=0; j<m_pages[i].getValueSize(); j++) {
-            out << "#define DEV_" << n << "_" << v[j].label << "\t\t\t" << v[j].value->text() << "\n";
-        }
+        /* Misc */
+        labels = QStringList();
+        labels << "REPEAT_XP" << "REPEAT_XM" << "REPEAT_YP" << "REPEAT_YM" << "FLIP_POSITION_IN_DATA1"
+                << "FLIP_POSITION_IN_DATA2" << "FLIP_POSITION_IN_DATA3" << "WRONG_POSITION_IN_DATA1";
+        f = m_pages[i]->getMiscBox();
+        for (int j=0; j<labels.size(); j++)
+            out << "#define DEV_" << n << "_" << labels[j] << "\t\t\t" << f[labels[j]] << "\n";
+
         out << "\n";
     }
 
     out << "/*****Timer settings*******/\n" << later;
 
     if ( !file.open(QIODevice::WriteOnly | QIODevice::Text) ) {
-        QMessageBox::critical (this, "Error", "Error opening file for writing.");
+        QMessageBox::critical (this, "Qonfigure", "Error opening file for writing.");
         return;
     }
     QTextStream fileOut(&file);

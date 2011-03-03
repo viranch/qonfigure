@@ -8,6 +8,7 @@
 #include <QDir>
 #include <QTextStream>
 #include "mytabpage.h"
+#include "selectdevices.h"
 
 namespace Ui {
     class Qonfigure;
@@ -23,13 +24,12 @@ public:
 
 private:
     Ui::Qonfigure *ui;
-    myTabPage *m_pages;
+    QList<myTabPage*> m_pages;
     QString filename;
+    SelectDevices* sd;
 
 private slots:
     void on_actionSave_triggered();
-    void on_actionNew_Device_triggered();
-    void removeTab(int);
 };
 
 #endif // QONFIGURE_H
