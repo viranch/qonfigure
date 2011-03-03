@@ -49,12 +49,17 @@
    </attribute>
    <addaction name="actionOpen"/>
    <addaction name="actionSave"/>
+   <addaction name="separator"/>
+   <addaction name="actionPrevTab"/>
+   <addaction name="actionPrevGroup"/>
+   <addaction name="actionNextGroup"/>
+   <addaction name="actionNextTab"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionSave">
    <property name="icon">
-    <iconset>
-     <normaloff>../../../../../usr/share/icons/oxygen/32x32/actions/document-save-as.png</normaloff>../../../../../usr/share/icons/oxygen/32x32/actions/document-save-as.png</iconset>
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/document-save-as.png</normaloff>:/icons/icons/document-save-as.png</iconset>
    </property>
    <property name="text">
     <string>Save</string>
@@ -65,8 +70,8 @@
   </action>
   <action name="actionOpen">
    <property name="icon">
-    <iconset>
-     <normaloff>../../../../../usr/share/icons/oxygen/48x48/actions/document-open.png</normaloff>../../../../../usr/share/icons/oxygen/48x48/actions/document-open.png</iconset>
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/document-open.png</normaloff>:/icons/icons/document-open.png</iconset>
    </property>
    <property name="text">
     <string>Open</string>
@@ -75,12 +80,75 @@
     <string>Ctrl+O</string>
    </property>
   </action>
+  <action name="actionPrevTab">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/go-previous.png</normaloff>:/icons/icons/go-previous.png</iconset>
+   </property>
+   <property name="text">
+    <string>Previous Tab</string>
+   </property>
+   <property name="toolTip">
+    <string>Previous Tab (Ctrl+PgUp)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+PgUp</string>
+   </property>
+  </action>
+  <action name="actionNextGroup">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/go-down.png</normaloff>:/icons/icons/go-down.png</iconset>
+   </property>
+   <property name="text">
+    <string>Next Group</string>
+   </property>
+   <property name="toolTip">
+    <string>Next Group (Ctrl+Down)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Down</string>
+   </property>
+  </action>
+  <action name="actionPrevGroup">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/go-up.png</normaloff>:/icons/icons/go-up.png</iconset>
+   </property>
+   <property name="text">
+    <string>Previous Group</string>
+   </property>
+   <property name="toolTip">
+    <string>Previous Group (Ctrl+Up)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Up</string>
+   </property>
+  </action>
+  <action name="actionNextTab">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/go-next.png</normaloff>:/icons/icons/go-next.png</iconset>
+   </property>
+   <property name="text">
+    <string>Next Tab</string>
+   </property>
+   <property name="toolTip">
+    <string>Next Tab (Ctrl+PgDown)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+PgDown</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
  <slots>
   <slot>changeTabCount()</slot>
   <slot>removeTab(int)</slot>
+  <slot>focusWidget(int)</slot>
  </slots>
 </ui>

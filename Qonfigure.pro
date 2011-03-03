@@ -22,3 +22,6 @@ HEADERS  += qonfigure.h \
 FORMS    += qonfigure.ui \
     mytabpage.ui \
     selectdevices.ui
+
+RESOURCES += \
+    icons.qrc

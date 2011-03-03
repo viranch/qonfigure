@@ -27,7 +27,7 @@
    <item row="0" column="0">
     <widget class="QCheckBox" name="checkBox">
      <property name="text">
-      <string>Device 1</string>
+      <string>Device &amp;1</string>
      </property>
      <property name="checked">
       <bool>true</bool>
@@ -37,7 +37,7 @@
    <item row="1" column="0">
     <widget class="QCheckBox" name="checkBox_2">
      <property name="text">
-      <string>Device 2</string>
+      <string>Device &amp;2</string>
      </property>
      <property name="checked">
       <bool>true</bool>
@@ -47,7 +47,7 @@
    <item row="2" column="0">
     <widget class="QCheckBox" name="checkBox_3">
      <property name="text">
-      <string>Device 3</string>
+      <string>Device &amp;3</string>
      </property>
      <property name="checked">
       <bool>true</bool>
@@ -57,7 +57,7 @@
    <item row="3" column="0">
     <widget class="QCheckBox" name="checkBox_4">
      <property name="text">
-      <string>Device 4</string>
+      <string>Device &amp;4</string>
      </property>
      <property name="checked">
       <bool>true</bool>

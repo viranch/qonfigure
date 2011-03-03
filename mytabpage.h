@@ -12,8 +12,7 @@ namespace Ui {
 }
 
 struct timerField {
-    double time;
-    QString unit;
+    QString time;
     QString high;
     QString low;
 };
@@ -29,16 +28,22 @@ public:
     QString getModel();
 
     QMap<QString, QString> getCommonBox();
-    QMap<QString, timerField> getTimerBox();
+    QMap<QString, timerField*> getTimerBox();
     QMap<QString, QString> getMiscBox();
+
+    void on_actionPrevGroup_triggered();
+    void on_actionNextGroup_triggered();
 
     ~myTabPage();
 
 private:
     Ui::myTabPage *ui;
     QMap<QString, QString> commonBox;
-    QMap<QString, timerField> timerBox;
+    QMap<QString, timerField*> timerBox;
     QMap<QString, QString> miscBox;
+
+private slots:
+    void focusWidget(int index);
 };
 
 #endif // MYTABPAGE_H

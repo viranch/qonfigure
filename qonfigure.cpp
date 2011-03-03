@@ -52,7 +52,7 @@ void Qonfigure::on_actionSave_triggered()
     prefix << "ONE" << "TWO" << "THREE" << "FOUR";
 
     QMap<QString, QString> f;
-    QMap<QString, timerField> t;
+    QMap<QString, timerField*> t;
     QString later="";
 
     for (int i=0; i<4; i++) {
@@ -60,9 +60,9 @@ void Qonfigure::on_actionSave_triggered()
         QString n = prefix.at(i);
 
         /* Common */
-        out << "/********* Device " << i+1 << "************/\n";
+        out << "/*********DEVICE " << i+1 << "************/\n";
         out << "#define DEV_" << n << "_Device_ID\t\t\t\"" << m_pages[i]->getDevice_ID() << "\"\n";
-        out << "#define DEV_" << n << "_Model\t\t\t\"" << m_pages[i]->getModel() << "\"\n";
+        out << "#define DEV_" << n << "_Model\t\t\t\t\"" << m_pages[i]->getModel() << "\"\n";
 
         QStringList labels;
         labels << "CommonSignal" << "xvalue4" << "xvalue5" << "yvalue4" << "yvalue5" << "COMMON_SIGNAL_LENGTH" << "CMD_SIGNAL_LENGTH";
@@ -78,27 +78,21 @@ void Qonfigure::on_actionSave_triggered()
         for (int j=0; j<labels.size(); j++) {
             QStringList highlow;
             highlow << "High" << "Low";
-            timerField* tf = &t[labels[j]];
+            timerField* tf = t[labels[j]];
 
             foreach (QString hl, highlow) {
-                var = "T3_";
-                out << "#define DEV_" << n << "_" << labels[j] << hl << "\t\t\tT3_";
-
-                double val = tf->time;
-                out << (int) val;
-                var += QString("%1").arg((int)val);
-                if (val!=(int)val) {
-                    out << "_" << (val-(int)val)*10;
-                    var += QString("_%1").arg((val-(int)val)*10);
+                var = "T3_"+tf->time+"_"+hl.toUpper();
+                if (labels[j]=="WRONGBIT" || labels[j]=="FLIPBIT") {
+                    out << "#define DEV_" << n << "_" << labels[j] << "_" << hl.toUpper() << "\t\t\t" << var << "\n";
                 }
-
-                out << tf->unit << "_" << hl.toUpper() << "\n";
-                var += tf->unit+"_"+hl.toUpper();
+                else {
+                    out << "#define DEV_" << n << "_" << labels[j] << hl << "\t\t\t" << var << "\n";
+                }
 
                 if (hl=="High") {
                     if ( !later.contains(var) )
                         later += "#define " + var + "\t\t\t" + tf->high + "\n";
-                    else if ( !later.contains(var + "\t\t\t" + tf->high) ) {
+                    else if ( !later.contains(var + "\t\t\t" + tf->high + "\n") ) {
                         QMessageBox::critical (this, "Qonfigure", "Multiple definitions of "+var);
                         return;
                     }
@@ -106,7 +100,7 @@ void Qonfigure::on_actionSave_triggered()
                 else {
                     if ( !later.contains(var) )
                         later += "#define " + var + "\t\t\t" + tf->low + "\n";
-                    else if ( !later.contains(var + "\t\t\t" + tf->low) ) {
+                    else if ( !later.contains(var + "\t\t\t" + tf->low + "\n") ) {
                         QMessageBox::critical (this, "Qonfigure", "Multiple definitions of "+var);
                         return;
                     }
@@ -135,4 +129,28 @@ void Qonfigure::on_actionSave_triggered()
     QTextStream fileOut(&file);
     fileOut << outString << "\n";
     file.close();
+}
+
+void Qonfigure::on_actionPrevTab_triggered()
+{
+    int curr = ui->devices->currentIndex();
+    if (curr>0)
+        ui->devices->setCurrentIndex(curr-1);
+    else
+        ui->devices->setCurrentIndex(3);
+}
+
+void Qonfigure::on_actionPrevGroup_triggered()
+{
+    m_pages[ui->devices->currentIndex()]->on_actionPrevGroup_triggered();
+}
+
+void Qonfigure::on_actionNextGroup_triggered()
+{
+    m_pages[ui->devices->currentIndex()]->on_actionNextGroup_triggered();
+}
+
+void Qonfigure::on_actionNextTab_triggered()
+{
+    ui->devices->setCurrentIndex( (ui->devices->currentIndex()+1)%4 );
 }
