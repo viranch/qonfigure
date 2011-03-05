@@ -97,17 +97,20 @@ void myTabPage::on_actionPrevGroup_triggered()
     int curr = ui->toolBox->currentIndex();
     if (curr)
         ui->toolBox->setCurrentIndex(curr-1);
-    else
-        ui->toolBox->setCurrentIndex(2);
 }
 
 void myTabPage::on_actionNextGroup_triggered()
 {
-    ui->toolBox->setCurrentIndex( (ui->toolBox->currentIndex()+1)%3 );
+    int curr = ui->toolBox->currentIndex();
+    if (curr<2)
+        ui->toolBox->setCurrentIndex(curr+1);
 }
 
 void myTabPage::focusWidget(int index)
 {
+    if (index==-1)
+        index = ui->toolBox->currentIndex();
+
     switch (index) {
     case 0:
         ui->Device_ID->setFocus();

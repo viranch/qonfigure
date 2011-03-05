@@ -42,7 +42,7 @@ private:
     QMap<QString, timerField*> timerBox;
     QMap<QString, QString> miscBox;
 
-private slots:
+public slots:
     void focusWidget(int index);
 };
 

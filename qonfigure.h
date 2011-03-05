@@ -29,11 +29,13 @@ private:
     SelectDevices* sd;
 
 private slots:
+    void on_actionQuit_triggered() { close(); }
     void on_actionNextTab_triggered();
     void on_actionPrevGroup_triggered();
     void on_actionNextGroup_triggered();
     void on_actionPrevTab_triggered();
     void on_actionSave_triggered();
+    void focusWidget(int index);
 };
 
 #endif // QONFIGURE_H

@@ -41,8 +41,8 @@ void Qonfigure::on_actionSave_triggered()
     if (fname=="")
         return;
 
-    QFile file ( fname );
     filename = fname;
+    QFile file ( filename );
 
     QString outString;
     QTextStream out (&outString);
@@ -153,4 +153,9 @@ void Qonfigure::on_actionNextGroup_triggered()
 void Qonfigure::on_actionNextTab_triggered()
 {
     ui->devices->setCurrentIndex( (ui->devices->currentIndex()+1)%4 );
+}
+
+void Qonfigure::focusWidget(int index)
+{
+    m_pages[index]->focusWidget(-1);
 }

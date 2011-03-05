@@ -1,10 +1,12 @@
 <RCC>
     <qresource prefix="/icons">
         <file>icons/document-open.png</file>
-        <file>icons/document-save-as.png</file>
         <file>icons/go-down.png</file>
         <file>icons/go-next.png</file>
         <file>icons/go-previous.png</file>
         <file>icons/go-up.png</file>
+        <file>icons/qonfigure.png</file>
+        <file>icons/application-exit.png</file>
+        <file>icons/document-save.png</file>
     </qresource>
 </RCC>

@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Qonfigure</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/icons/qonfigure.png</normaloff>:/icons/icons/qonfigure.png</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="1" column="0">
@@ -51,15 +55,18 @@
    <addaction name="actionSave"/>
    <addaction name="separator"/>
    <addaction name="actionPrevTab"/>
-   <addaction name="actionPrevGroup"/>
-   <addaction name="actionNextGroup"/>
    <addaction name="actionNextTab"/>
+   <addaction name="separator"/>
+   <addaction name="actionNextGroup"/>
+   <addaction name="actionPrevGroup"/>
+   <addaction name="separator"/>
+   <addaction name="actionQuit"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionSave">
    <property name="icon">
     <iconset resource="icons.qrc">
-     <normaloff>:/icons/icons/document-save-as.png</normaloff>:/icons/icons/document-save-as.png</iconset>
+     <normaloff>:/icons/icons/document-save.png</normaloff>:/icons/icons/document-save.png</iconset>
    </property>
    <property name="text">
     <string>Save</string>
@@ -140,12 +147,44 @@
     <string>Ctrl+PgDown</string>
    </property>
   </action>
+  <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/application-exit.png</normaloff>:/icons/icons/application-exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="toolTip">
+    <string>Quit (Ctrl+Q)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
   <include location="icons.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>devices</sender>
+   <signal>currentChanged(int)</signal>
+   <receiver>Qonfigure</receiver>
+   <slot>focusWidget(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>162</x>
+     <y>134</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>55</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
   <slot>changeTabCount()</slot>
   <slot>removeTab(int)</slot>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>442</width>
-    <height>349</height>
+    <width>466</width>
+    <height>453</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,15 +20,15 @@
       <bool>true</bool>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="commonBox">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>185</width>
-        <height>247</height>
+        <width>448</width>
+        <height>354</height>
        </rect>
       </property>
       <attribute name="label">
@@ -128,6 +128,19 @@
        <item row="6" column="1">
         <widget class="QLineEdit" name="yvalue5"/>
        </item>
+       <item row="9" column="1">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="timerBox">
@@ -135,8 +148,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>424</width>
-        <height>250</height>
+        <width>448</width>
+        <height>354</height>
        </rect>
       </property>
       <attribute name="label">
@@ -145,6 +158,12 @@
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="3">
         <widget class="QLabel" name="label_10">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
           <string>High</string>
          </property>
@@ -155,6 +174,12 @@
        </item>
        <item row="0" column="4">
         <widget class="QLabel" name="label_11">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
           <string>Low</string>
          </property>
@@ -422,6 +447,19 @@
        <item row="7" column="4">
         <widget class="QLineEdit" name="FLIPBITLow"/>
        </item>
+       <item row="8" column="2">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="miscBox">
@@ -429,8 +467,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>211</width>
-        <height>220</height>
+        <width>448</width>
+        <height>354</height>
        </rect>
       </property>
       <attribute name="label">
@@ -516,6 +554,19 @@
        </item>
        <item row="7" column="1">
         <widget class="QLineEdit" name="WRONG_POSITION_IN_DATA1"/>
+       </item>
+       <item row="8" column="1">
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
