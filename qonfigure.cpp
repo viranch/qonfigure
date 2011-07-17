@@ -42,7 +42,6 @@ void Qonfigure::on_actionSave_triggered()
         return;
 
     filename = fname;
-    QFile file ( filename );
 
     QString outString;
     QTextStream out (&outString);
@@ -122,6 +121,7 @@ void Qonfigure::on_actionSave_triggered()
 
     out << "/*****Timer settings*******/\n" << later;
 
+    QFile file ( filename );
     if ( !file.open(QIODevice::WriteOnly | QIODevice::Text) ) {
         QMessageBox::critical (this, "Qonfigure", "Error opening file for writing.");
         return;
@@ -158,4 +158,35 @@ void Qonfigure::on_actionNextTab_triggered()
 void Qonfigure::focusWidget(int index)
 {
     m_pages[index]->focusWidget(-1);
+}
+
+void Qonfigure::on_actionOpen_triggered()
+{
+    QString filename = QFileDialog::getOpenFileName(this, "Open header file", QString(), "Header Files (*.h)");
+    QFile file(filename);
+
+    if ( !file.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+        QMessageBox::critical (this, "Qonfigure", QString("Error reading file: %1").arg(filename));
+        return;
+    }
+
+    QString s, data="";
+    QTextStream fileIn(&file);
+    while (!fileIn.atEnd()) {
+        fileIn >> s;
+        data += s;
+    }
+    file.close();
+
+    QFile file2 ( "/home/viranch/test.h" );
+    file2.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream fileOut(&file2);
+    fileOut << data;
+    file2.close();
+}
+
+void Qonfigure::on_actionAbout_triggered()
+{
+    QMessageBox::about(this, "About Qonfigure",
+                       "Qonfigure is a \"timerconfig.h\" file generator for the CePal project. The file is generated based on the header values specified.");
 }

@@ -8,5 +8,6 @@
         <file>icons/qonfigure.png</file>
         <file>icons/application-exit.png</file>
         <file>icons/document-save.png</file>
+        <file>icons/help-about.png</file>
     </qresource>
 </RCC>

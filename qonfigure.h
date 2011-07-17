@@ -30,6 +30,8 @@ private:
 
 private slots:
     void on_actionQuit_triggered() { close(); }
+    void on_actionAbout_triggered();
+    void on_actionOpen_triggered();
     void on_actionNextTab_triggered();
     void on_actionPrevGroup_triggered();
     void on_actionNextGroup_triggered();
