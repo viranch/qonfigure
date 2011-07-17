@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-TARGET = Qonfigure
+TARGET = qonfigure
 TEMPLATE = app
 
 
